@@ -113,8 +113,9 @@ shakers-semana-2-lp-lotions
 feat/lotion-landing-page
 ```
 ### Pull Request
-(colocar link depois)
-
+```
+https://github.com/andreLuAlmeida/shakers-semana-2-lp-lotions/pull/1#issue-3942102446
+```
 ### Vídeo
 ```
 https://youtu.be/tZV7oF7ZE-I
