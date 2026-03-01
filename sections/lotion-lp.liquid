@@ -1,0 +1,213 @@
+<section class="lotion-lp">
+  <div class="lotion-lp__container page-width">
+
+    <header class="lotion-lp__pagina">
+      <h1 class="lotion-lp__titulo">{{ page.title }}</h1>
+      <div class="lotion-lp__conteudo">
+        {{ page.content }}
+      </div>
+    </header>
+
+    {% assign produto_destaque = section.settings.featured_product %}
+    {% if produto_destaque %}
+      <hr class="lotion-lp__divisor">
+      <section class="lotion-lp__destaque">
+        <h2 class="lotion-lp__titulo-secao">Produto em destaque</h2>
+        <a class="lotion-lp__link-destaque" href="{{ produto_destaque.url }}">
+          <img
+            class="lotion-lp__imagem-destaque"
+            src="{{ produto_destaque.featured_image | image_url: width: 900 }}"
+            alt="{{ produto_destaque.title }}"
+            loading="lazy"
+          > 
+        </a>
+        <h3 class="lotion-lp__nome-destaque">{{ produto_destaque.title }}</h3>
+        <p class="lotion-lp__preco-destaque">{{ produto_destaque.price | money }}</p>
+        <a class="lotion-lp__botao-destaque" href="{{ produto_destaque.url }}">
+          Ver produto
+        </a>
+      </section>
+    {% endif %}
+
+    {% assign colecao_selecionada = section.settings.lotions_collection %}
+    {% if colecao_selecionada %}
+      <hr class="lotion-lp__divisor">
+      <section class="lotion-lp__colecao">
+        <h2 class="lotion-lp__titulo-secao">Coleção</h2>
+        <div class="lotion-lp__lista-produtos">
+          {% for produto in colecao_selecionada.products %}
+            <article class="lotion-lp__card-produto">
+              <a class="lotion-lp__link-produto" href="{{ produto.url }}">
+                <img
+                  class="lotion-lp__imagem-produto"
+                  src="{{ produto.featured_image | image_url: width: 700 }}"
+                  alt="{{ produto.title }}"
+                  loading="lazy"
+                >
+              </a>
+              <div class="lotion-lp__info-produto">
+                <h4 class="lotion-lp__nome-produto">{{ produto.title }}</h4>
+                <p class="lotion-lp__preco-produto">{{ produto.price | money }}</p>
+                <a class="lotion-lp__botao-produto" href="{{ produto.url }}">
+                  Ver produto
+                </a>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+      </section>
+    {% endif %}
+  </div>
+
+  <style>
+    .lotion-lp {
+      padding: 32px 0;
+    }
+
+    .lotion-lp__pagina {
+      margin-bottom: 16px;
+    }
+
+    .lotion-lp__titulo {
+      margin: 0 0 10px;
+      font-size: 34px;
+      line-height: 1.15;
+    }
+
+    .lotion-lp__conteudo {
+      opacity: 0.9;
+      max-width: 70ch;
+    }
+
+    .lotion-lp__divisor {
+      margin: 22px 0;
+      border: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+    }
+
+    .lotion-lp__titulo-secao {
+      margin: 0 0 12px;
+      font-size: 22px;
+    }
+
+    .lotion-lp__destaque {
+      padding: 16px;
+      border: 1px solid rgba(0, 0, 0, 0.10);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.02);
+      max-width: 900px;
+    }
+
+    .lotion-lp__link-destaque {
+      display: block;
+      text-decoration: none;
+    }
+
+    .lotion-lp__imagem-destaque {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      display: block;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .lotion-lp__nome-destaque {
+      margin: 12px 0 6px;
+      font-size: 18px;
+    }
+
+    .lotion-lp__preco-destaque {
+      margin: 0 0 12px;
+      font-weight: 700;
+    }
+
+    .lotion-lp__botao-destaque {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: #111;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .lotion-lp__lista-produtos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .lotion-lp__card-produto {
+      border: 1px solid rgba(0, 0, 0, 0.10);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .lotion-lp__card-produto:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .lotion-lp__link-produto {
+      display: block;
+      text-decoration: none;
+    }
+
+    .lotion-lp__imagem-produto {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .lotion-lp__info-produto {
+      padding: 12px;
+    }
+
+    .lotion-lp__nome-produto {
+      margin: 0 0 6px;
+      font-size: 16px;
+    }
+
+    .lotion-lp__preco-produto {
+      margin: 0 0 10px;
+      font-weight: 700;
+    }
+
+    .lotion-lp__botao-produto {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0.16);
+      text-decoration: none;
+      font-weight: 600;
+      color: #111;
+      background: transparent;
+    }
+  </style>
+</section>
+
+{% schema %}
+{
+  "name": "Lotion LP",
+  "settings": [
+    {
+      "type": "product",
+      "id": "featured_product",
+      "label": "Produto em destaque"
+    },
+    {
+      "type": "collection",
+      "id": "lotions_collection",
+      "label": "Coleção de loções"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Lotion LP"
+    }
+  ]
+}
+{% endschema %}
